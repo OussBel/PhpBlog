@@ -1,0 +1,19 @@
+{% extends "layout.html" %} {% block content %}
+
+<h1>Liste des articles</h1>
+
+<a href="/articles/add">Ajouter un article</a>
+
+<article>
+  {% for article in articles %}
+  <a href="/articles/{{article.id}}/show">
+    <h3>{{ article.title }}</h3>
+    <img src="{{rootDir}}/images/{{article.img}}" alt="blog" />
+    <p>
+      {{article.content|slice(0,200)|split(' ')|slice(0, -1)|join(' ') ~'...'}}
+    </p>
+    <span>{{article.category_name}}</span>
+    <span>{{article.published_at|date("m/d/Y")}}</span>
+  </a>
+</article>
+{% endfor %} {% endblock %}

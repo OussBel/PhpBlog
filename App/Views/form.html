@@ -1,0 +1,36 @@
+{% extends "layout.html" %} {% block content %}
+
+<form
+  action="/index.php?controller=ArticleController&action=index"
+  method="post"
+>
+  <div class="">
+    <label for="title">Titre:</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      placeholder="Titre"
+      value="{{article.title}}"
+    />
+  </div>
+
+  <div class="">
+    <label for="content">Contenu:</label>
+    <textarea name="content" id="content">
+     {{article.content}}
+    </textarea>
+  </div>
+
+  <div class="">
+    <label for="categories">Sélectionner une catégorie</label>
+    <select name="categories" id="categories">
+      <option value=""></option>
+      {% for category in categories %}
+      <option value="{{category.id}}">{{category.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit">Ajouter</button>
+</form>
+{% endblock %}
